@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write # Explicitly forces write access for the GITHUB_TOKEN
+      packages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,7 +19,6 @@ jobs:
 
       - name: Build and Push Image Lowercase
         run: |
-          # Convert username and repo to lowercase to satisfy Docker registry standards
           IMAGE_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
           REPO_NAME=$(echo "${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]')
           
